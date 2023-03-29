@@ -26,6 +26,17 @@ const Calculadora = () => {
     setText('');
     setResult(eval(text));
   };
+  const validate=()=>{
+    const text = textArea;
+    switch(text.slice(-1)){
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+    return false
+    }
+    return true
+    }
  
   const handleNumberPress = value => {
     if (resultText != '') {
@@ -38,7 +49,7 @@ const Calculadora = () => {
       if (labels.OPERATORS.includes(lastChar) || textArea == '') value = '0.';
       if (lastChar == value) return;
     }
-    if (value === '=') return calculateResult();
+    if (value === '=') return validate() && calculateResult();
 
     setText(textArea + value);
   };
